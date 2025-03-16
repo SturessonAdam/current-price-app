@@ -9,7 +9,6 @@ export default function Index() {
     fetch("http://192.168.68.108:8080/prices")
     .then((response) => response.json())
     .then((data) => {
-      console.log("Fetched data:", data); // Kolla om det finns några priser
       setPrices(data);
       setLoading(false);
     })
