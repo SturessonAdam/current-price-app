@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 
+//TODO:
+//move API fetch logic to seperate component
+//more components for different API calls?
+//fix UI
+
 export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
