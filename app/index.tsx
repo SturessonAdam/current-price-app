@@ -32,7 +32,7 @@ export default function Index() {
     ) : (
       prices.map((price, index) => (
         <Text key={index} style={{ fontSize: 18, marginBottom: 10 }}>
-          {new Date(price.time_start).toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" })}: {Math.round(price.SEK_per_kWh * 100)} öre/kWh
+          {new Date(price.time_start).toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" })}: {price.SEK_per_kWh.toFixed(5)} SEK/kWh
         </Text>
         ))
       )}
