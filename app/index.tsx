@@ -5,6 +5,8 @@ import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 //move API fetch logic to seperate component
 //more components for different API calls?
 //fix UI
+//grafs/charts for visualazing data
+//header with navigation
 
 export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
