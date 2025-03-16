@@ -20,11 +20,12 @@ export default function Index() {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{ flex: 1}}>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <ScrollView style={{ maxHeight: 400 }} contentContainerStyle={{ alignItems: "center" }}>
+        <ScrollView style={{ flex: 1, maxHeight: 600 }} contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}>Todays spotprices per hour</Text>
           {prices
             .sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime())
             .map((price, index) => {
@@ -36,7 +37,7 @@ export default function Index() {
               const priceColor = price.SEK_per_kWh < 0 ? "red" : "black";
   
               return (
-                <Text key={index} style={{ fontSize: 18, marginBottom: 10, color: priceColor }}>
+                <Text key={index} style={{ fontSize: 20, marginBottom: 5, color: priceColor }}>
                   {time} → {price.SEK_per_kWh.toFixed(5)} SEK/kWh
                 </Text>
               );
