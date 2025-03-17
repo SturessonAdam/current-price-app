@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
+import { fetchTodaysPrices } from "./api/api";
 
 //TODO:
 //move API fetch logic to seperate component
@@ -12,18 +13,28 @@ export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   fetch("http://192.168.68.108:8080/prices")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     setPrices(data);
+  //     setLoading(false);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error fetching prices:", error);
+  //     setLoading(false);
+  //   });
+  // }, []);
+  
   useEffect(() => {
-    fetch("http://192.168.68.108:8080/prices")
-    .then((response) => response.json())
-    .then((data) => {
+    async function getData() {
+      const data = await fetchTodaysPrices();
       setPrices(data);
       setLoading(false);
-    })
-    .catch((error) => {
-      console.error("Error fetching prices:", error);
-      setLoading(false);
-    });
+    }
+    getData();
   }, []);
+
 
   return (
     <View style={{ flex: 1}}>
