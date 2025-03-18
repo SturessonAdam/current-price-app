@@ -13,19 +13,6 @@ export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   fetch("http://192.168.68.108:8080/prices")
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     setPrices(data);
-  //     setLoading(false);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error fetching prices:", error);
-  //     setLoading(false);
-  //   });
-  // }, []);
-  
   useEffect(() => {
     async function getData() {
       const data = await fetchTodaysPrices();
@@ -34,7 +21,6 @@ export default function Index() {
     }
     getData();
   }, []);
-
 
   return (
     <View style={{ flex: 1}}>
