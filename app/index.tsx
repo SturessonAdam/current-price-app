@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
-import { fetchTodaysPrices } from "../api/api";
+import { fetchTodaysPrices } from "./api/api";
 
 //TODO:
 //move API fetch logic to seperate component
