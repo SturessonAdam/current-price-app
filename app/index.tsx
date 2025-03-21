@@ -7,7 +7,7 @@ import { fetchTodaysPrices } from "./api/api";
 //more components for different API calls?
 //fix UI
 //grafs/charts for visualazing data
-//header with navigation
+//fix the header in layout
 
 export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
