@@ -23,12 +23,12 @@ export default function Index() {
   }, []);
 
   return (
-    <View style={{ flex: 1}}>
+    <View style={{ flex: 1, paddingTop: 50}}>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <ScrollView style={{ flex: 1, maxHeight: 600 }} contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}>Todays spotprices per hour</Text>
+          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20, color: "black" }}>Todays spotprices per hour</Text>
           {prices
             .sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime())
             .map((price, index) => {
