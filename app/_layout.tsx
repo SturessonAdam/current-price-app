@@ -7,7 +7,14 @@ export default function RootLayout() {
   return (
     <View style={styles.container}>
       <Header/>
-      <Tabs>
+      <Tabs
+              screenOptions={{
+                tabBarStyle: { backgroundColor: "#6f839b" },
+                tabBarActiveTintColor: "black",
+                tabBarInactiveTintColor: "#c2c2d6", 
+                sceneStyle: { backgroundColor: "#c2c2d6" },
+              }}
+      >
         <Tabs.Screen name="index" options={{ title: "Todays spotprices" }} />
         <Tabs.Screen name="tomorrow" options={{ title: "Tomorrows spotprices" }} />
       </Tabs>
@@ -18,7 +25,7 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#121212"
+    backgroundColor: "#6f839b",
   },
 });
 
