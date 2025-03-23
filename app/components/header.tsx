@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <View style={styles.headerContainer}>
         <Image 
-            source={require("../assets/images/CurrentPrice.png")} 
+            source={require("../../assets/images/CurrentPrice.png")} 
             style={styles.headerImage}
         />
     </View>
