@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     headerImage: {
       width: "100%",
       height: "100%",
-      resizeMode: "cover",
+      resizeMode: "stretch",
     },
   });
