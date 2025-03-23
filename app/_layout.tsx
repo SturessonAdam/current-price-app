@@ -1,12 +1,13 @@
 import React from "react";
 import { Stack, Tabs } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 import Header from "./components/header";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function RootLayout() {
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#6f839b" barStyle="light-content" />
       <Header/>
       <Tabs
         screenOptions=
