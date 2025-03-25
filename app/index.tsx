@@ -3,11 +3,8 @@ import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTodaysPrices } from "./api/api";
 
 //TODO:
-//move API fetch logic to seperate component
-//more components for different API calls?
-//fix UI
+//improve the ui generally
 //grafs/charts for visualazing data
-//fix the header in layout
 
 export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
