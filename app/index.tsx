@@ -6,15 +6,23 @@ import { fetchTodaysPrices } from "./api/api";
 //improve the ui generally
 //grafs/charts for visualazing data
 
+
 export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function getData() {
-      const data = await fetchTodaysPrices();
-      setPrices(data);
-      setLoading(false);
+      try {
+        const data = await fetchTodaysPrices();
+        setPrices(data);
+      } catch (error) {
+        console.error(error);
+        setError(true);
+      } finally { 
+        setLoading(false);
+      }  
     }
     getData();
   }, []);
