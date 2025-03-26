@@ -5,6 +5,10 @@ import { fetchTodaysPrices } from "./api/api";
 //TODO:
 //improve the ui generally
 //grafs/charts for visualazing data
+//render the error message if the fetch fails
+//add a refresh button
+//add region buttons
+//add the api calls for the other regions
 
 
 export default function Index() {
