@@ -9,6 +9,7 @@ import { fetchTodaysPrices } from "./api/api";
 //add a refresh button
 //add region buttons
 //add the api calls for the other regions
+//fun price facts
 
 
 export default function Index() {

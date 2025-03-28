@@ -6,13 +6,20 @@ import { fetchTomorrowsPrices } from "./api/api";
 export default function Tomorrow() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   
   useEffect(() => {
     async function getData() {
-      const data = await fetchTomorrowsPrices();
-      setPrices(data);
-      setLoading(false);
-    }
+      try {
+        const data = await fetchTomorrowsPrices();
+        setPrices(data);
+      } catch (error) {
+        console.error(error);
+        setError(true);
+      } finally { 
+        setLoading(false);
+    }  
+  }
     getData();
   }, []);
 
