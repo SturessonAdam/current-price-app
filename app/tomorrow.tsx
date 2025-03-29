@@ -31,6 +31,7 @@ export default function Tomorrow() {
       ) : (
         <ScrollView style={{ flex: 1, maxHeight: 600 }} contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}>
           <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20, color: "black" }}>Tomorrows spotprices per hour</Text>
+          {error && <Text style={{ color: "red" }}>{error}</Text>}
           {prices
             .sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime())
             .map((price, index) => {
