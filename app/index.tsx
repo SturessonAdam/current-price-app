@@ -16,6 +16,7 @@ export default function Index() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState("3");
 
   useEffect(() => {
     async function getData() {
