@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTodaysPrices } from "./api/api";
+import RadioGroup from "react-native-radio-buttons-group";
 
 //TODO:
 //improve the ui generally
@@ -17,6 +18,13 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("3");
+
+  const radioButtons = [
+    { id: "1", label: "SE1", value: "1" },
+    { id: "2", label: "SE2", value: "2" },
+    { id: "3", label: "SE3", value: "3" },
+    { id: "4", label: "SE4", value: "4" },
+  ];
 
   useEffect(() => {
     async function getData() {
@@ -35,6 +43,12 @@ export default function Index() {
 
   return (
     <View style={{ flex: 1, paddingTop: 50}}>
+      <RadioGroup
+        radioButtons={radioButtons}
+        onPress={(value: string) => setSelectedRegion(value)}
+        selectedId={selectedRegion}
+        layout="row"
+      />
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
