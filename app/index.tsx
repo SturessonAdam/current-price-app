@@ -42,7 +42,7 @@ export default function Index() {
   }, [selectedRegion]);
 
   return (
-    <View style={{ flex: 1, paddingTop: 50}}>
+    <View style={{ flex: 1, paddingTop: 50, justifyContent: "center", alignItems: "center" }}>
       <RadioGroup
         radioButtons={radioButtons}
         onPress={(value: string) => setSelectedRegion(value)}
