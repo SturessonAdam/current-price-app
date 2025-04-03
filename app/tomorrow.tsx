@@ -19,7 +19,7 @@ export default function Tomorrow() {
   useEffect(() => {
     async function getData() {
       try {
-        const data = await fetchTomorrowsPrices();
+        const data = await fetchTomorrowsPrices(selectedRegion);
         setPrices(data);
       } catch (error) {
         console.error(error);
@@ -29,7 +29,7 @@ export default function Tomorrow() {
     }  
   }
     getData();
-  }, []);
+  }, [selectedRegion]);
 
     
   return (
