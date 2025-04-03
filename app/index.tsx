@@ -29,7 +29,7 @@ export default function Index() {
   useEffect(() => {
     async function getData() {
       try {
-        const data = await fetchTodaysPrices();
+        const data = await fetchTodaysPrices(selectedRegion);
         setPrices(data);
       } catch (error) {
         console.error(error);
@@ -39,7 +39,7 @@ export default function Index() {
       }  
     }
     getData();
-  }, []);
+  }, [selectedRegion]);
 
   return (
     <View style={{ flex: 1, paddingTop: 50}}>
