@@ -7,6 +7,14 @@ export default function Tomorrow() {
   const [prices, setPrices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState("3");
+
+  const radioButtons = [
+    { id: "1", label: "SE1", value: "1" },
+    { id: "2", label: "SE2", value: "2" },
+    { id: "3", label: "SE3", value: "3" },
+    { id: "4", label: "SE4", value: "4" },
+  ];  
   
   useEffect(() => {
     async function getData() {
