@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTomorrowsPrices } from "./api/api";
+import RadioGroup from "react-native-radio-buttons-group";
 
 
 export default function Tomorrow() {
@@ -33,7 +34,13 @@ export default function Tomorrow() {
 
     
   return (
-    <View style={{ flex: 1, paddingTop: 50}}>
+    <View style={{ flex: 1, paddingTop: 50, justifyContent: "center", alignItems: "center" }}>
+      <RadioGroup
+        radioButtons={radioButtons}
+        onPress={(value: string) => setSelectedRegion(value)}
+        selectedId={selectedRegion}
+        layout="row"
+      />
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
