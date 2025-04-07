@@ -6,10 +6,7 @@ import RadioGroup from "react-native-radio-buttons-group";
 //TODO:
 //improve the ui generally
 //grafs/charts for visualazing data - react-native-gifted-charts?
-//render the error message if the fetch fails
 //add a refresh button
-//add region buttons (radio buttons)
-//add the api calls for the other regions, add the region in the call from the button
 //fun price facts
 
 
