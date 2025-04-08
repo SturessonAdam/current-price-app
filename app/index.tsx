@@ -39,18 +39,25 @@ export default function Index() {
   }, [selectedRegion]);
 
   return (
-    <View style={{ flex: 1, paddingTop: 50, justifyContent: "center", alignItems: "center" }}>
-      <RadioGroup
-        radioButtons={radioButtons}
-        onPress={(value: string) => setSelectedRegion(value)}
-        selectedId={selectedRegion}
-        layout="row"
-      />
+    <View style={{ flex: 1, paddingTop: 50 }}>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <RadioGroup
+          radioButtons={radioButtons}
+          onPress={(value: string) => setSelectedRegion(value)}
+          selectedId={selectedRegion}
+          layout="row"
+        />
+      </View>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <ScrollView style={{ flex: 1, maxHeight: 600 }} contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20, color: "black" }}>Todays spotprices per hour</Text>
+        <ScrollView 
+          style={{ flex: 1, maxHeight: 600 }} 
+          contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20, color: "black" }}>
+            Todays spotprices per hour
+          </Text>
           {error && <Text style={{ color: "red" }}>{error}</Text>}
           {prices
             .sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime())
