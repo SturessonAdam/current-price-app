@@ -1,10 +1,21 @@
+import Constants from "expo-constants";
+
+const getBaseUrl = () => {
+  const debuggerHost =
+    Constants.expoConfig?.hostUri?.split(":")[0] ||
+    Constants.manifest2?.extra?.debuggerHost?.split(":")[0]; //fallback om inte expoConfig finns
+
+  return `http://${debuggerHost}:8080`;
+};
 
 export async function fetchTodaysPrices(region: string) {
-    const response = await fetch(`http://192.168.68.108:8080/prices?region=${region}`);
+    const baseUrl = getBaseUrl();
+    const response = await fetch(`${baseUrl}/prices?region=${region}`);
     return await response.json();
 }
 
 export async function fetchTomorrowsPrices(region: string) {
-    const response = await fetch(`http://192.168.68.108:8080/prices/tomorrow?region=${region}`);
+    const baseUrl = getBaseUrl();
+    const response = await fetch(`${baseUrl}/prices/tomorrow?region=${region}`);
     return await response.json();
 }
