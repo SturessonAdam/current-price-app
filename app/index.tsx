@@ -8,6 +8,7 @@ import RadioGroup from "react-native-radio-buttons-group";
 //grafs/charts for visualazing data - react-native-gifted-charts?
 //add a refresh button
 //fun price facts
+//deploy backend and change in api.ts to prod url
 
 
 export default function Index() {
