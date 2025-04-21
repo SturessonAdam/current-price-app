@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTodaysPrices } from "./api/api";
 import RadioGroup from "react-native-radio-buttons-group";
+import { BarChart } from "react-native-gifted-charts";
 
 //TODO:
 //improve the ui generally
@@ -39,6 +40,11 @@ export default function Index() {
     getData();
   }, [selectedRegion]);
 
+  const chartData = prices.map((price: any) => ({
+    value: price.SEK_per_kWh,
+    label: new Date(price.time_start).getHours().toString().padStart(2, "0"),
+  }));
+
   return (
     <View style={{ flex: 1, paddingTop: 50 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -60,7 +66,7 @@ export default function Index() {
             Todays spotprices per hour
           </Text>
           {error && <Text style={{ color: "red" }}>{error}</Text>}
-          {prices
+          {/* {prices
             .sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime())
             .map((price, index) => {
               const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
@@ -75,7 +81,18 @@ export default function Index() {
                   {time} → {price.SEK_per_kWh.toFixed(5)} SEK/kWh
                 </Text>
               );
-            })}
+            })} */}
+                <BarChart
+                  data={chartData}
+                  barWidth={20}
+                  frontColor="#4A90E2"
+                  yAxisTextStyle={{ color: "#333" }}
+                  xAxisLabelTextStyle={{ color: "#333" }}
+                  noOfSections={5}
+                  spacing={14}
+                  isAnimated
+                  roundedTop
+                />
         </ScrollView>
       )}
     </View>
