@@ -7,6 +7,8 @@ import RadioGroup from "react-native-radio-buttons-group";
 //add a refresh button
 //fun price facts
 //deploy backend and change in api.ts to prod url
+//light/dark mode ?
+//translation ?
 
 
 export default function Index() {
