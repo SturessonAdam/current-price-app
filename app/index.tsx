@@ -4,8 +4,6 @@ import { fetchTodaysPrices } from "./api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 
 //TODO:
-//improve the ui generally
-//grafs/charts for visualazing data - react-native-gifted-charts?
 //add a refresh button
 //fun price facts
 //deploy backend and change in api.ts to prod url
@@ -94,7 +92,9 @@ export default function Index() {
               );
             })}
           </View>
-          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>All day:</Text>
+          <View style={{ width: "80%", height: 1, backgroundColor: "black", marginVertical: 10 }} />
+
+          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>All hours:</Text>
           {sortedPrices.map((price, index) => {
             const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
               hour: "2-digit",
