@@ -86,7 +86,9 @@ export default function Tomorrow() {
                 );
               })}
             </View>
-            <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>All day:</Text>
+            <View style={{ width: "80%", height: 1, backgroundColor: "black", marginVertical: 10 }} />
+
+            <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>All hours:</Text>
             {sortedPrices.map((price, index) => {
               const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
                 hour: "2-digit",
