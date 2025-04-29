@@ -31,46 +31,96 @@ export default function Tomorrow() {
     getData();
   }, [selectedRegion]);
 
+  const sortedPrices = prices.slice().sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime());
+  const topThreePrices = prices.slice().sort((a, b) => a.SEK_per_kWh - b.SEK_per_kWh).slice(0, 3);
+
   return (
-    <View style={{ flex: 1, paddingTop: 50 }}>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <RadioGroup
-          radioButtons={radioButtons}
-          onPress={(value: string) => setSelectedRegion(value)}
-          selectedId={selectedRegion}
-          layout="row"
-        />
-      </View>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : (
-        <ScrollView
-          style={{ flex: 1, maxHeight: 600 }}
-          contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20, color: "black" }}>
-            Tomorrows spotprices per hour
-          </Text>
-          {error && <Text style={{ color: "red" }}>{error}</Text>}
-          {prices
-            .sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime())
-            .map((price, index) => {
+      <View style={{ flex: 1, paddingTop: 50 }}>
+        <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
+          <RadioGroup
+            radioButtons={radioButtons}
+            onPress={(value: string) => setSelectedRegion(value)}
+            selectedId={selectedRegion}
+            layout="row"
+          />
+        </View>
+        
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <ScrollView 
+            style={{ flex: 1 }} 
+            contentContainerStyle={{ justifyContent: "center", alignItems: "center", paddingBottom: 20 }}
+          >
+            <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "black" }}>
+              Tomorrows spot prices
+            </Text>
+  
+            {error && <Text style={{ color: "red" }}>{error}</Text>}
+  
+            <View style={{ width: '90%', marginBottom: 20 }}>
+              <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>🔝 Top 3 cheapest hours:</Text>
+              {topThreePrices.map((price, index) => {
+                const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+                return (
+                  <View key={index} style={{
+                    backgroundColor: "#E8F5E9",
+                    borderRadius: 10,
+                    padding: 10,
+                    marginVertical: 5,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 3,
+                    elevation: 3,
+                  }}>
+                    <Text style={{ fontSize: 18, color: "#2E7D32" }}>{time}</Text>
+                    <Text style={{ fontSize: 18, color: "#2E7D32" }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                  </View>
+                );
+              })}
+            </View>
+            <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>All day:</Text>
+            {sortedPrices.map((price, index) => {
               const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
                 hour: "2-digit",
                 minute: "2-digit",
               });
-
-              const priceColor = price.SEK_per_kWh < 0 ? "red" : "black";
-
+  
+              const priceColor = price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#333";
+              const backgroundColor = price.SEK_per_kWh < 0.3 ? "#E8F5E9" : price.SEK_per_kWh > 0.8 ? "#FFEBEE" : "#F5F5F5";
+  
               return (
-                <Text key={index} style={{ fontSize: 20, marginBottom: 5, color: priceColor }}>
-                  {time} → {price.SEK_per_kWh.toFixed(5)} SEK/kWh
-                </Text>
+                <View key={index} style={{
+                  width: '90%',
+                  backgroundColor: backgroundColor,
+                  borderRadius: 10,
+                  padding: 10,
+                  marginVertical: 5,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.2,
+                  shadowRadius: 3,
+                  elevation: 3,
+                }}>
+                  <Text style={{ fontSize: 18, color: "#333" }}>{time}</Text>
+                  <Text style={{ fontSize: 18, color: priceColor }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                </View>
               );
             })}
-        </ScrollView>
-      )}
-    </View>
-  );
-}
+          </ScrollView>
+        )}
+      </View>
+    );
+  }
+  
 
