@@ -7,9 +7,15 @@
         }
       },
       "production": {
+        "distribution": "store",
         "android": {
-          "buildType": "apk",
-          "gradleCommand": ":app:assembleRelease"
+          "buildType": "apk"
+        }
+      },
+      "apkTest": {
+        "distribution": "store",
+        "android": {
+          "buildType": "apk"
         }
       }
     }
