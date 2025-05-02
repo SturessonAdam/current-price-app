@@ -4,6 +4,10 @@ import { fetchTodaysPrices } from "./api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 
 //TODO:
+
+//priority:
+//- restructure project, move out files that not should be included in layout
+
 //add a refresh button
 //fun price facts
 //deploy backend and change in api.ts to prod url
