@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, ScrollView } from "react-native";
-import { fetchTomorrowsPrices } from "./api/api";
+import { fetchTomorrowsPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 
 export default function Tomorrow() {

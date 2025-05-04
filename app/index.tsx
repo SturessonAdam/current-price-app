@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
-import { fetchTodaysPrices } from "./api/api";
+import { fetchTodaysPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 
 //TODO:

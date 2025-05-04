@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Tabs } from "expo-router";
 import { StyleSheet, View, StatusBar } from "react-native";
-import Header from "./components/header";
+import Header from "../components/header";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function RootLayout() {
@@ -34,7 +34,6 @@ export default function RootLayout() {
                 <FontAwesome name="calendar" size={size} color={color} /> ),
            }}
         />
-        <Tabs.Screen name="components/header" options={{ href: null }} />
       </Tabs>
     </View>
   )
