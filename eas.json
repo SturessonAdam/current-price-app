@@ -30,6 +30,16 @@
       "env": {
         "ENVIRONMENT": "apkTest"
       }
+    },
+    "devclient": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "ENVIRONMENT": "development"
+      }
     }
   }
 }
