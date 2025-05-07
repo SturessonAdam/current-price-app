@@ -1,5 +1,5 @@
 import Constants from "expo-constants";
-import { API_BASE_URL } from "@env";
+const { API_BASE_URL } = Constants.expoConfig?.extra ?? {};
 
 // const getBaseUrl = () => {
 //   const debuggerHost =
@@ -20,7 +20,6 @@ import { API_BASE_URL } from "@env";
 //     const response = await fetch(`${baseUrl}/prices/tomorrow?region=${region}`);
 //     return await response.json();
 // }
-
 
 
 export async function fetchTodaysPrices(region: string) {

@@ -1,0 +1,67 @@
+import 'dotenv/config';
+import { ExpoConfig, ConfigContext } from '@expo/config';
+
+export default ({ config }: ConfigContext): ExpoConfig => {
+  const ENVIRONMENT = process.env.ENVIRONMENT || 'development';
+  const API_BASE_URL = process.env.API_BASE_URL || 'https://currentprice-backend.onrender.com';
+
+  return {
+    ...config,
+    name: "current-price-app",
+    slug: "current-price-app",
+    version: "1.0.0",
+    orientation: "portrait",
+    icon: "./assets/images/icon.png",
+    scheme: "myapp",
+    userInterfaceStyle: "automatic",
+    newArchEnabled: true,
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.sturessonadam.currentpriceapp"
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: "./assets/images/adaptive-icon.png",
+        backgroundColor: "#ffffff"
+      },
+      package: "com.sturessonadam.currentpriceapp"
+    },
+    web: {
+      bundler: "metro",
+      output: "static",
+      favicon: "./assets/images/favicon.png"
+    },
+    plugins: [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          image: "./assets/images/splash-icon.png",
+          imageWidth: 200,
+          resizeMode: "contain",
+          backgroundColor: "#ffffff"
+        }
+      ]
+    ],
+    experiments: {
+      typedRoutes: true
+    },
+    extra: {
+      router: {
+        origin: false
+      },
+      eas: {
+        projectId: "c0227bb7-2ae8-4f2a-8c8b-4971fa08222e"
+      },
+      ENVIRONMENT,
+      API_BASE_URL 
+    },
+    runtimeVersion: {
+      policy: "appVersion"
+    },
+    updates: {
+      url: "https://u.expo.dev/c0227bb7-2ae8-4f2a-8c8b-4971fa08222e"
+    }
+  };
+};
+
