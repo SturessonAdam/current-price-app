@@ -7,15 +7,15 @@ import { FontAwesome } from "@expo/vector-icons";
 export default function RootLayout() {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#6f839b" barStyle="light-content" />
+      <StatusBar backgroundColor="#1f1f24" barStyle="light-content" />
       <Header/>
       <Tabs
         screenOptions=
         {{
-        tabBarStyle: { backgroundColor: "#6f839b" },
-        tabBarActiveTintColor: "black",
-        tabBarInactiveTintColor: "#c2c2d6", 
-        sceneStyle: { backgroundColor: "#c2c2d6" },
+        tabBarStyle: { backgroundColor: "#1f1f24" },
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "grey", 
+        sceneStyle: { backgroundColor: "#1f1f24" },
         }}
       >
         <Tabs.Screen
@@ -42,7 +42,7 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#6f839b",
+    backgroundColor: "#1f1f24",
   },
 });
 

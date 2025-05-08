@@ -22,10 +22,10 @@ export default function Index() {
   const [selectedRegion, setSelectedRegion] = useState("3");
 
   const radioButtons = [
-    { id: "1", label: "SE1", value: "1" },
-    { id: "2", label: "SE2", value: "2" },
-    { id: "3", label: "SE3", value: "3" },
-    { id: "4", label: "SE4", value: "4" },
+    { id: "1", label: "SE1", value: "1", color: "white", labelStyle: { color: "white" } },
+    { id: "2", label: "SE2", value: "2", color: "white", labelStyle: { color: "white" } },
+    { id: "3", label: "SE3", value: "3", color: "white", labelStyle: { color: "white" } },
+    { id: "4", label: "SE4", value: "4", color: "white", labelStyle: { color: "white" } },
   ];
 
   useEffect(() => {
@@ -47,15 +47,25 @@ export default function Index() {
   const topThreePrices = prices.slice().sort((a, b) => a.SEK_per_kWh - b.SEK_per_kWh).slice(0, 3);
 
   return (
+    
     <View style={{ flex: 1, paddingTop: 50 }}>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
+        <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "white" }}>
+          Todays spot prices
+        </Text>
+        <View style={{ width: "80%", height: 1, backgroundColor: "white", marginVertical: 10 }} />
+        {/* <Text style={{ fontSize: 15, marginBottom: 10, color: "white" }}>
+          Region
+        </Text> */}
         <RadioGroup
           radioButtons={radioButtons}
           onPress={(value: string) => setSelectedRegion(value)}
           selectedId={selectedRegion}
           layout="row"
         />
+        <View style={{ width: "80%", height: 1, backgroundColor: "white", marginVertical: 10 }} />
       </View>
+      
       
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
@@ -64,14 +74,10 @@ export default function Index() {
           style={{ flex: 1 }} 
           contentContainerStyle={{ justifyContent: "center", alignItems: "center", paddingBottom: 20 }}
         >
-          <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "black" }}>
-            Todays spot prices
-          </Text>
-
           {error && <Text style={{ color: "red" }}>{error}</Text>}
 
           <View style={{ width: '90%', marginBottom: 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>🔝 Top 3 cheapest hours:</Text>
+            <Text style={{ fontSize: 15, fontWeight: "bold", marginBottom: 10, color: "white" }}>🔝 Top 3 cheapest hours:</Text>
             {topThreePrices.map((price, index) => {
               const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
                 hour: "2-digit",
@@ -98,9 +104,9 @@ export default function Index() {
               );
             })}
           </View>
-          <View style={{ width: "80%", height: 1, backgroundColor: "black", marginVertical: 10 }} />
+          <View style={{ width: "80%", height: 1, backgroundColor: "white", marginVertical: 10 }} />
 
-          <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>All hours:</Text>
+          <Text style={{ fontSize: 15, fontWeight: "bold", marginBottom: 10, color: "white" }}>All hours:</Text>
           {sortedPrices.map((price, index) => {
             const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
               hour: "2-digit",
