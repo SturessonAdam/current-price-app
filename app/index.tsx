@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTodaysPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
+import * as Font from 'expo-font';
 
 //TODO:
 
@@ -20,13 +21,20 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("3");
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   const radioButtons = [
-    { id: "1", label: "SE1", value: "1", color: "white", labelStyle: { color: "white" } },
-    { id: "2", label: "SE2", value: "2", color: "white", labelStyle: { color: "white" } },
-    { id: "3", label: "SE3", value: "3", color: "white", labelStyle: { color: "white" } },
-    { id: "4", label: "SE4", value: "4", color: "white", labelStyle: { color: "white" } },
+    { id: "1", label: "SE1", value: "1", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
+    { id: "2", label: "SE2", value: "2", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
+    { id: "3", label: "SE3", value: "3", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
+    { id: "4", label: "SE4", value: "4", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
   ];
+
+  useEffect(() => {
+    Font.loadAsync({
+      'SpaceMono-Regular': require('../assets/fonts/SpaceMono-Regular.ttf'),
+    }).then(() => setFontsLoaded(true));
+  }, []);
 
   useEffect(() => {
     async function getData() {
@@ -50,10 +58,10 @@ export default function Index() {
     
     <View style={{ flex: 1, paddingTop: 50 }}>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
-        <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "white" }}>
-          Todays spot prices
+        <Text style={{fontFamily: 'SpaceMono-Regular', fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "#e0e0e0" }}>
+          Todays spotprices
         </Text>
-        <View style={{ width: "80%", height: 1, backgroundColor: "white", marginVertical: 10 }} />
+        <View style={{ width: "80%", height: 1, backgroundColor: "#e0e0e0", marginVertical: 10 }} />
         {/* <Text style={{ fontSize: 15, marginBottom: 10, color: "white" }}>
           Region
         </Text> */}
@@ -63,7 +71,7 @@ export default function Index() {
           selectedId={selectedRegion}
           layout="row"
         />
-        <View style={{ width: "80%", height: 1, backgroundColor: "white", marginVertical: 10 }} />
+        <View style={{ width: "80%", height: 1, backgroundColor: "#e0e0e0", marginVertical: 10 }} />
       </View>
       
       
@@ -76,8 +84,8 @@ export default function Index() {
         >
           {error && <Text style={{ color: "red" }}>{error}</Text>}
 
+          <Text style={{ fontSize: 15, fontFamily: 'SpaceMono-Regular', fontWeight: "bold", marginBottom: 10, color: "#e0e0e0" }}>Top 3 cheapest hours:</Text>
           <View style={{ width: '90%', marginBottom: 20 }}>
-            <Text style={{ fontSize: 15, fontWeight: "bold", marginBottom: 10, color: "white" }}>🔝 Top 3 cheapest hours:</Text>
             {topThreePrices.map((price, index) => {
               const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
                 hour: "2-digit",
@@ -85,55 +93,59 @@ export default function Index() {
               });
               return (
                 <View key={index} style={{
-                  backgroundColor: "#E8F5E9",
-                  borderRadius: 10,
+                  backgroundColor: "#2b2b2b",
+                  borderRadius: 7,
                   padding: 10,
                   marginVertical: 5,
                   flexDirection: "row",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 2 },
+                  borderWidth: 1,
+                  borderColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
+                  shadowColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
+                  shadowOffset: { width: 1, height: 3 },
                   shadowOpacity: 0.2,
                   shadowRadius: 3,
                   elevation: 3,
                 }}>
-                  <Text style={{ fontSize: 18, color: "#2E7D32" }}>{time}</Text>
-                  <Text style={{ fontSize: 18, color: "#2E7D32" }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{time}</Text>
+                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
                 </View>
               );
             })}
           </View>
-          <View style={{ width: "80%", height: 1, backgroundColor: "white", marginVertical: 10 }} />
+          <View style={{ width: "80%", height: 1, backgroundColor: "#e0e0e0", marginVertical: 10 }} />
 
-          <Text style={{ fontSize: 15, fontWeight: "bold", marginBottom: 10, color: "white" }}>All hours:</Text>
+          <Text style={{ fontSize: 15, fontFamily: 'SpaceMono-Regular', fontWeight: "bold", marginBottom: 10, color: "#e0e0e0" }}>All hours:</Text>
           {sortedPrices.map((price, index) => {
             const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
               hour: "2-digit",
               minute: "2-digit",
             });
 
-            const priceColor = price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#333";
+            const priceColor = price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#1f1f24";
             const backgroundColor = price.SEK_per_kWh < 0.3 ? "#E8F5E9" : price.SEK_per_kWh > 0.8 ? "#FFEBEE" : "#F5F5F5";
 
             return (
               <View key={index} style={{
                 width: '90%',
-                backgroundColor: backgroundColor,
-                borderRadius: 10,
+                backgroundColor: "#2b2b2b",
+                borderRadius: 7,
                 padding: 10,
                 marginVertical: 5,
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                shadowColor: "#000",
-                shadowOffset: { width: 0, height: 2 },
+                borderWidth: 1,
+                borderColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
+                shadowColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
+                shadowOffset: { width: 2, height: 3 },
                 shadowOpacity: 0.2,
                 shadowRadius: 3,
                 elevation: 3,
               }}>
-                <Text style={{ fontSize: 18, color: "#333" }}>{time}</Text>
-                <Text style={{ fontSize: 18, color: priceColor }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{time}</Text>
+                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
               </View>
             );
           })}
