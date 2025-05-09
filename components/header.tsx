@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
       width: "100%",
       height: 100, 
       zIndex: 10,
-      borderBottomWidth: 0.5,
-      borderBottomColor: "#ffffff", 
+      borderBottomWidth: 0.1,
+      borderBottomColor: "grey", 
     },
     headerImage: {
       width: "100%",

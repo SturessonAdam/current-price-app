@@ -24,15 +24,15 @@ export default function Index() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   const radioButtons = [
-    { id: "1", label: "SE1", value: "1", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
-    { id: "2", label: "SE2", value: "2", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
-    { id: "3", label: "SE3", value: "3", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
-    { id: "4", label: "SE4", value: "4", color: "#e0e0e0", labelStyle: { color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' } },
+    { id: "1", label: "SE1", value: "1", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+    { id: "2", label: "SE2", value: "2", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+    { id: "3", label: "SE3", value: "3", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+    { id: "4", label: "SE4", value: "4", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
   ];
 
   useEffect(() => {
     Font.loadAsync({
-      'SpaceMono-Regular': require('../assets/fonts/SpaceMono-Regular.ttf'),
+      'TitilliumWeb-Regular': require('../assets/fonts/TitilliumWeb-Regular.ttf'),
     }).then(() => setFontsLoaded(true));
   }, []);
 
@@ -58,10 +58,10 @@ export default function Index() {
     
     <View style={{ flex: 1, paddingTop: 50 }}>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
-        <Text style={{fontFamily: 'SpaceMono-Regular', fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "#e0e0e0" }}>
+        <Text style={{fontFamily: 'TitilliumWeb-Regular', fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "#b9c7c5" }}>
           Todays spotprices
         </Text>
-        <View style={{ width: "80%", height: 1, backgroundColor: "#e0e0e0", marginVertical: 10 }} />
+        <View style={{ width: "80%", height: 0.5, backgroundColor: "grey", marginVertical: 10 }} />
         {/* <Text style={{ fontSize: 15, marginBottom: 10, color: "white" }}>
           Region
         </Text> */}
@@ -71,7 +71,7 @@ export default function Index() {
           selectedId={selectedRegion}
           layout="row"
         />
-        <View style={{ width: "80%", height: 1, backgroundColor: "#e0e0e0", marginVertical: 10 }} />
+        <View style={{ width: "80%", height: 0.5, backgroundColor: "grey", marginVertical: 10 }} />
       </View>
       
       
@@ -84,7 +84,7 @@ export default function Index() {
         >
           {error && <Text style={{ color: "red" }}>{error}</Text>}
 
-          <Text style={{ fontSize: 15, fontFamily: 'SpaceMono-Regular', fontWeight: "bold", marginBottom: 10, color: "#e0e0e0" }}>Top 3 cheapest hours:</Text>
+          <Text style={{ fontSize: 15, fontFamily: 'TitilliumWeb-Regular', fontWeight: "bold", marginBottom: 10, color: "#b9c7c5" }}>Top 3 cheapest hours:</Text>
           <View style={{ width: '90%', marginBottom: 20 }}>
             {topThreePrices.map((price, index) => {
               const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
@@ -108,15 +108,15 @@ export default function Index() {
                   shadowRadius: 3,
                   elevation: 3,
                 }}>
-                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{time}</Text>
-                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
+                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
                 </View>
               );
             })}
           </View>
-          <View style={{ width: "80%", height: 1, backgroundColor: "#e0e0e0", marginVertical: 10 }} />
+          <View style={{ width: "80%", height: 0.5, backgroundColor: "grey", marginVertical: 10 }} />
 
-          <Text style={{ fontSize: 15, fontFamily: 'SpaceMono-Regular', fontWeight: "bold", marginBottom: 10, color: "#e0e0e0" }}>All hours:</Text>
+          <Text style={{ fontSize: 15, fontFamily: 'TitilliumWeb-Regular', fontWeight: "bold", marginBottom: 10, color: "#b9c7c5" }}>All hours:</Text>
           {sortedPrices.map((price, index) => {
             const time = new Date(price.time_start).toLocaleTimeString("sv-SE", {
               hour: "2-digit",
@@ -144,8 +144,8 @@ export default function Index() {
                 shadowRadius: 3,
                 elevation: 3,
               }}>
-                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{time}</Text>
-                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'SpaceMono-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
+                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
               </View>
             );
           })}

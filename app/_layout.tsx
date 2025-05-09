@@ -21,7 +21,7 @@ export default function RootLayout() {
           name="index"
           options={{
             tabBarLabel: ({ color }) => (
-              <Text style={{ fontSize: 10, fontFamily: "SpaceMono-Regular", color }}>
+              <Text style={{ fontSize: 10, fontFamily: "TitilliumWeb-Regular", color }}>
                 Todays spotprices
               </Text>
             ),
@@ -34,7 +34,7 @@ export default function RootLayout() {
           name="tomorrow"
           options={{
             tabBarLabel: ({ color }) => (
-              <Text style={{ fontSize: 10, fontFamily: "SpaceMono-Regular", color }}>
+              <Text style={{ fontSize: 10, fontFamily: "TitilliumWeb-Regular", color }}>
                 Tomorrows spotprices
               </Text>
             ),
