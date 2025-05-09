@@ -3,6 +3,7 @@ import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTodaysPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 import * as Font from 'expo-font';
+import RefreshButton from "@/components/refreshButton";
 
 //TODO:
 
@@ -56,7 +57,21 @@ export default function Index() {
   return (
     
     <View style={{ flex: 1, paddingTop: 50, }}>
+      <View style={{ position: "absolute", top: 50, right: 20, zIndex: 10 }}>
+          <RefreshButton onPress={() => {
+            setLoading(true);
+            setError(false);
+            fetchTodaysPrices(selectedRegion)
+              .then(data => setPrices(data))
+              .catch(err => {
+                console.error(err);
+                setError(true);
+              })
+              .finally(() => setLoading(false));
+          }} />
+        </View>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
+ 
         <Text style={{fontFamily: 'TitilliumWeb-Regular', fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "#b9c7c5" }}>
           Todays spotprices
         </Text>
