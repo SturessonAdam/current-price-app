@@ -7,11 +7,10 @@ import * as Font from 'expo-font';
 //TODO:
 
 //priority:
-//- restructure project, move out files that not should be included in layout
+//- restructure project, component for price card, component for radio buttons
 
 //add a refresh button
 //fun price facts
-//deploy backend and change in api.ts to prod url
 //light/dark mode ?
 //translation ?
 
@@ -23,11 +22,11 @@ export default function Index() {
   const [selectedRegion, setSelectedRegion] = useState("3");
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  const radioButtons = [
-    { id: "1", label: "SE1", value: "1", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-    { id: "2", label: "SE2", value: "2", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-    { id: "3", label: "SE3", value: "3", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-    { id: "4", label: "SE4", value: "4", color: "#b9c7c5", labelStyle: { color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+  const createRadioButtons = (selectedId: string) => [
+    { id: "1", label: "SE1", value: "1", color: "#b9c7c5", labelStyle: { color: selectedId === "1" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+    { id: "2", label: "SE2", value: "2", color: "#b9c7c5", labelStyle: { color: selectedId === "2" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+    { id: "3", label: "SE3", value: "3", color: "#b9c7c5", labelStyle: { color: selectedId === "3" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
+    { id: "4", label: "SE4", value: "4", color: "#b9c7c5", labelStyle: { color: selectedId === "4" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
   ];
 
   useEffect(() => {
@@ -66,7 +65,7 @@ export default function Index() {
           Region
         </Text> */}
         <RadioGroup
-          radioButtons={radioButtons}
+          radioButtons={createRadioButtons(selectedRegion)}
           onPress={(value: string) => setSelectedRegion(value)}
           selectedId={selectedRegion}
           layout="row"
@@ -123,8 +122,8 @@ export default function Index() {
               minute: "2-digit",
             });
 
-            const priceColor = price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#1f1f24";
-            const backgroundColor = price.SEK_per_kWh < 0.3 ? "#E8F5E9" : price.SEK_per_kWh > 0.8 ? "#FFEBEE" : "#F5F5F5";
+            // const priceColor = price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#1f1f24";
+            // const backgroundColor = price.SEK_per_kWh < 0.3 ? "#E8F5E9" : price.SEK_per_kWh > 0.8 ? "#FFEBEE" : "#F5F5F5";
 
             return (
               <View key={index} style={{
