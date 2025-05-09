@@ -10,7 +10,6 @@ import RefreshButton from "@/components/refreshButton";
 //priority:
 //- restructure project, component for price card, component for radio buttons
 
-//add a refresh button
 //fun price facts
 //light/dark mode ?
 //translation ?
