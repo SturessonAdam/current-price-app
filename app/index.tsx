@@ -55,7 +55,7 @@ export default function Index() {
 
   return (
     
-    <View style={{ flex: 1, paddingTop: 50 }}>
+    <View style={{ flex: 1, paddingTop: 50, }}>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
         <Text style={{fontFamily: 'TitilliumWeb-Regular', fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "#b9c7c5" }}>
           Todays spotprices
