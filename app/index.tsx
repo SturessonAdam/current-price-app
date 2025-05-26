@@ -4,6 +4,7 @@ import { fetchTodaysPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 import * as Font from 'expo-font';
 import RefreshButton from "@/components/refreshButton";
+import { RefreshControl } from "react-native";
 
 //TODO:
 
@@ -50,6 +51,18 @@ export default function Index() {
     getData();
   }, [selectedRegion]);
 
+  const handleRefresh = () => {
+    setLoading(true);
+    setError(false);
+    fetchTodaysPrices(selectedRegion)
+      .then((data) => setPrices(data))
+      .catch((err) => {
+        console.error(err);
+        setError(true);
+      })
+      .finally(() => setLoading(false));
+  };
+
   const sortedPrices = prices.slice().sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime());
   const topThreePrices = prices.slice().sort((a, b) => a.SEK_per_kWh - b.SEK_per_kWh).slice(0, 3);
 
@@ -57,17 +70,7 @@ export default function Index() {
     
     <View style={{ flex: 1, paddingTop: 50, }}>
       <View style={{ position: "absolute", top: 50, right: 20, zIndex: 10 }}>
-          <RefreshButton onPress={() => {
-            setLoading(true);
-            setError(false);
-            fetchTodaysPrices(selectedRegion)
-              .then(data => setPrices(data))
-              .catch(err => {
-                console.error(err);
-                setError(true);
-              })
-              .finally(() => setLoading(false));
-          }} />
+        <RefreshButton onPress={handleRefresh} />
         </View>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
  
@@ -93,6 +96,9 @@ export default function Index() {
       ) : (
         <ScrollView 
           style={{ flex: 1 }} 
+            refreshControl={
+            <RefreshControl refreshing={loading} onRefresh={handleRefresh} tintColor="#b9c7c5" />
+            }
           contentContainerStyle={{ justifyContent: "center", alignItems: "center", paddingBottom: 20 }}
         >
           {error && <Text style={{ color: "red" }}>{error}</Text>}
