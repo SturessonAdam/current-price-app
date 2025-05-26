@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator, ScrollView } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView, RefreshControl } from "react-native";
 import { fetchTomorrowsPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 import RefreshButton from "@/components/refreshButton";
@@ -40,6 +40,18 @@ export default function Tomorrow() {
     getData();
   }, [selectedRegion]);
 
+    const handleRefresh = () => {
+      setLoading(true);
+      setError(false);
+      fetchTomorrowsPrices(selectedRegion)
+        .then((data) => setPrices(data))
+        .catch((err) => {
+          console.error(err);
+          setError(true);
+        })
+        .finally(() => setLoading(false));
+    };
+
   const sortedPrices = prices.slice().sort((a, b) => new Date(a.time_start).getTime() - new Date(b.time_start).getTime());
   const topThreePrices = prices.slice().sort((a, b) => a.SEK_per_kWh - b.SEK_per_kWh).slice(0, 3);
 
@@ -47,17 +59,7 @@ export default function Tomorrow() {
     
     <View style={{ flex: 1, paddingTop: 50, }}>
       <View style={{ position: "absolute", top: 50, right: 20, zIndex: 10 }}>
-          <RefreshButton onPress={() => {
-            setLoading(true);
-            setError(false);
-            fetchTomorrowsPrices(selectedRegion)
-              .then(data => setPrices(data))
-              .catch(err => {
-                console.error(err);
-                setError(true);
-              })
-              .finally(() => setLoading(false));
-          }} />
+        <RefreshButton onPress={handleRefresh} />
         </View>
       <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
  
@@ -82,7 +84,10 @@ export default function Tomorrow() {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <ScrollView 
-          style={{ flex: 1 }} 
+          style={{ flex: 1 }}
+          refreshControl={
+            <RefreshControl refreshing={loading} onRefresh={handleRefresh} tintColor="#b9c7c5" />
+          }        
           contentContainerStyle={{ justifyContent: "center", alignItems: "center", paddingBottom: 20 }}
         >
           {error && <Text style={{ color: "red" }}>{error}</Text>}
