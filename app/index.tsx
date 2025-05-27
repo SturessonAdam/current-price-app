@@ -82,12 +82,6 @@ export default function Index() {
         {/* <Text style={{ fontSize: 15, marginBottom: 10, color: "white" }}>
           Region
         </Text> */}
-        {/* <RadioGroup
-          radioButtons={createRadioButtons(selectedRegion)}
-          onPress={(value: string) => setSelectedRegion(value)}
-          selectedId={selectedRegion}
-          layout="row"
-        /> */}
         <RadioButtons
           selectedRegion={selectedRegion}
           onChange={setSelectedRegion}
