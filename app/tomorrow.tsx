@@ -4,6 +4,7 @@ import { fetchTomorrowsPrices } from "../api/api";
 import RadioGroup from "react-native-radio-buttons-group";
 import RefreshButton from "@/components/refreshButton";
 import * as Font from 'expo-font';
+import RadioButtons from "@/components/radiobuttons";
 
 export default function Tomorrow() {
   const [prices, setPrices] = useState<any[]>([]);
@@ -70,11 +71,9 @@ export default function Tomorrow() {
         {/* <Text style={{ fontSize: 15, marginBottom: 10, color: "white" }}>
           Region
         </Text> */}
-        <RadioGroup
-          radioButtons={createRadioButtons(selectedRegion)}
-          onPress={(value: string) => setSelectedRegion(value)}
-          selectedId={selectedRegion}
-          layout="row"
+        <RadioButtons
+          selectedRegion={selectedRegion}
+          onChange={setSelectedRegion}
         />
         <View style={{ width: "80%", height: 0.5, backgroundColor: "grey", marginVertical: 10 }} />
       </View>
