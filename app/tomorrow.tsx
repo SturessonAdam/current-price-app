@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, ScrollView, RefreshControl } from "react-native";
 import { fetchTomorrowsPrices } from "../api/api";
-import RadioGroup from "react-native-radio-buttons-group";
 import RefreshButton from "@/components/refreshButton";
 import * as Font from 'expo-font';
 import RadioButtons from "@/components/radiobuttons";
@@ -12,13 +11,6 @@ export default function Tomorrow() {
   const [error, setError] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("3");
   const [fontsLoaded, setFontsLoaded] = useState(false);
-
-  const createRadioButtons = (selectedId: string) => [
-    { id: "1", label: "SE1", value: "1", color: "#b9c7c5", labelStyle: { color: selectedId === "1" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-    { id: "2", label: "SE2", value: "2", color: "#b9c7c5", labelStyle: { color: selectedId === "2" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-    { id: "3", label: "SE3", value: "3", color: "#b9c7c5", labelStyle: { color: selectedId === "3" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-    { id: "4", label: "SE4", value: "4", color: "#b9c7c5", labelStyle: { color: selectedId === "4" ? "#ffffff" : "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' } },
-  ];
 
   useEffect(() => {
     Font.loadAsync({
