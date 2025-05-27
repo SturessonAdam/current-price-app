@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
 import { fetchTodaysPrices } from "../api/api";
-import RadioGroup from "react-native-radio-buttons-group";
+import RadioGroup, { RadioButton } from "react-native-radio-buttons-group";
 import * as Font from 'expo-font';
 import RefreshButton from "@/components/refreshButton";
 import { RefreshControl } from "react-native";
+import RadioButtons from "@/components/radiobuttons";
 
 //TODO:
 
@@ -81,11 +82,15 @@ export default function Index() {
         {/* <Text style={{ fontSize: 15, marginBottom: 10, color: "white" }}>
           Region
         </Text> */}
-        <RadioGroup
+        {/* <RadioGroup
           radioButtons={createRadioButtons(selectedRegion)}
           onPress={(value: string) => setSelectedRegion(value)}
           selectedId={selectedRegion}
           layout="row"
+        /> */}
+        <RadioButtons
+          selectedRegion={selectedRegion}
+          onChange={setSelectedRegion}
         />
         <View style={{ width: "80%", height: 0.5, backgroundColor: "grey", marginVertical: 10 }} />
       </View>
