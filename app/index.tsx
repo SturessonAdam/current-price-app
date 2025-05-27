@@ -9,11 +9,11 @@ import RadioButtons from "@/components/radiobuttons";
 //TODO:
 
 //priority:
-//- restructure project, component for price card, component for radio buttons
+//- restructure project, component for price card
 
 //fun price facts
 //light/dark mode ?
-//translation ?
+//translation and render the pricses in euro aswell
 
 
 export default function Index() {
