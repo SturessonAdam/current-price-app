@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, ScrollView } from "react-native";
-import { fetchTodaysPrices } from "../api/api";
+import { fetchTodaysFunFacts, fetchTodaysPrices } from "../api/api";
 import * as Font from 'expo-font';
 import RefreshButton from "@/components/refreshButton";
 import { RefreshControl } from "react-native";
@@ -22,6 +22,7 @@ export default function Index() {
   const [error, setError] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("3");
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [funFacts, setFunFacts] = useState<any[]>([]);
 
   useEffect(() => {
     Font.loadAsync({
@@ -43,6 +44,21 @@ export default function Index() {
     }
     getData();
   }, [selectedRegion]);
+
+    useEffect(() => {
+    async function getData() {
+      try {
+        const data = await fetchTodaysFunFacts(selectedRegion);
+        setFunFacts(data);
+      } catch (error) {
+        console.error(error);
+        setError(true);
+      } finally { 
+        setLoading(false);
+      }  
+    }
+    getData();
+  }, []);
 
   const handleRefresh = () => {
     setLoading(true);
