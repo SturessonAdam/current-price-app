@@ -5,6 +5,7 @@ import * as Font from 'expo-font';
 import RefreshButton from "@/components/refreshButton";
 import { RefreshControl } from "react-native";
 import RadioButtons from "@/components/radiobuttons";
+import { formatFunFactLabel } from "../utils/formatFunFactLabel";
 
 //TODO:
 
@@ -127,15 +128,15 @@ export default function Index() {
                   justifyContent: "space-between",
                   alignItems: "center",
                   borderWidth: 1,
-                  borderColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
-                  shadowColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
-                  shadowOffset: { width: 1, height: 3 },
+                  borderColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#b9c7c5",
+                  shadowColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#b9c7c5",
+                  shadowOffset: { width: 1, height: 2 },
                   shadowOpacity: 0.2,
                   shadowRadius: 3,
                   elevation: 3,
                 }}>
-                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
-                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                  <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
+                  <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
                 </View>
               );
             })}
@@ -163,18 +164,60 @@ export default function Index() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 borderWidth: 1,
-                borderColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
-                shadowColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#ccc",
-                shadowOffset: { width: 2, height: 3 },
+                borderColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#b9c7c5",
+                shadowColor: price.SEK_per_kWh < 0.3 ? "#4CAF50" : price.SEK_per_kWh > 0.8 ? "#F44336" : "#b9c7c5",
+                shadowOffset: { width: 1, height: 2 },
                 shadowOpacity: 0.2,
                 shadowRadius: 3,
                 elevation: 3,
               }}>
-                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
-                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
+                <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
               </View>
             );
           })}
+   
+          <View style={{ width: "80%", height: 0.5, backgroundColor: "grey", marginVertical: 10, marginTop: 30 }} />
+
+          <Text style={{ fontSize: 15, fontFamily: 'TitilliumWeb-Regular', fontWeight: "bold",  color: "#b9c7c5" }}>Fun facts:</Text>
+            <View style={{ marginVertical: 20, width: "90%" }}>
+            {Object.entries(funFacts).map(([key, val]) => (
+              <View
+                key={key}
+                style={{
+                  backgroundColor: "#2b2b2b",
+                  borderRadius: 7,
+                  padding: 10,
+                  marginVertical: 5,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderColor: "#b9c7c5",
+                  shadowColor: "#b9c7c5",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 4,
+                  elevation: 2,
+                }}
+              >
+                <Text style={{
+                  fontSize: 16,
+                  fontFamily: 'TitilliumWeb-Regular',
+                  color: "#b9c7c5",
+                }}>
+                  {formatFunFactLabel(key)}
+                </Text>
+                <Text style={{
+                  fontSize: 16,
+                  fontFamily: 'TitilliumWeb-Regular',
+                  color: "#b9c7c5",
+                }}>
+                  {val.toFixed(2)} kr
+                </Text>
+              </View>
+            ))}
+          </View>
         </ScrollView>
       )}
     </View>
