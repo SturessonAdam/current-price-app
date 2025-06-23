@@ -107,8 +107,8 @@ export default function Tomorrow() {
                   shadowRadius: 3,
                   elevation: 3,
                 }}>
-                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
-                  <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                  <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
+                  <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
                 </View>
               );
             })}
@@ -143,8 +143,8 @@ export default function Tomorrow() {
                 shadowRadius: 3,
                 elevation: 3,
               }}>
-                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
-                <Text style={{ fontSize: 18, color: "#e0e0e0", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
+                <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{time}</Text>
+                <Text style={{ fontSize: 18, color: "#b9c7c5", fontFamily: 'TitilliumWeb-Regular' }}>{price.SEK_per_kWh.toFixed(3)} SEK/kWh</Text>
               </View>
             );
           })}
